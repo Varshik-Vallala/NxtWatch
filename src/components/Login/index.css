@@ -1,0 +1,19 @@
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid #000; */
+  height: 100vh;
+}
+
+.login-form {
+  box-shadow: 5px 10px 8px 10px #5f5e5e30;
+  padding: 30px 20px;
+  border-radius: 10px;
+}
+
+.nxtwatch-logo {
+  height: 40px;
+  text-align: center;
+}
