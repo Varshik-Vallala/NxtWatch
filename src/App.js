@@ -1,12 +1,39 @@
+import {Component} from 'react'
+
+import {Switch, Route} from 'react-router-dom'
+
 import './App.css'
+
+import NxtWatchContext from './context/nxtWatchContext'
 
 import Login from './components/Login'
 
+import Home from './components/Home'
+
 // Replace your code here
-const App = () => (
-  <div>
-    <Login />
-  </div>
-)
+class App extends Component {
+  state = {darkTheme: false}
+
+  onChangeDarkTheme = () => {
+    this.setState(prevState => ({
+      darkTheme: !prevState.darkTheme,
+    }))
+  }
+
+  render() {
+    const {darkTheme} = this.state
+
+    return (
+      <NxtWatchContext.Provider
+        value={{darkTheme, onChangeDarkTheme: this.onChangeDarkTheme}}
+      >
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </NxtWatchContext.Provider>
+    )
+  }
+}
 
 export default App

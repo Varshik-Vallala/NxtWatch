@@ -5,15 +5,62 @@
   justify-content: center;
   /* border: 1px solid #000; */
   height: 100vh;
+  font-family: 'Roboto';
 }
 
 .login-form {
   box-shadow: 5px 10px 8px 10px #5f5e5e30;
-  padding: 30px 20px;
+  padding: 40px 40px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nxtwatch-logo {
   height: 40px;
-  text-align: center;
+  align-self: center;
+  margin: 10px 0;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin: 11px 0;
+}
+
+.input-field {
+  padding: 8px;
+  outline: none;
+  width: 270px;
+  border: 1px solid #616e7c;
+  border-radius: 3px;
+}
+
+.label-text {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.login-button {
+  color: #fff;
+  background-color: #3b82f6;
+  padding: 7px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  margin-top: 14px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.error-field {
+  border-bottom: 2px solid red;
 }
