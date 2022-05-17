@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import Cookies from 'js-cookie'
+
 import './index.css'
 
 class Login extends Component {
@@ -42,6 +44,8 @@ class Login extends Component {
 
     if (response.ok === true) {
       console.log(data)
+
+      Cookies.set('nxtWatch_token', data.jwt_token, {expires: 30})
     } else {
       this.setState({showErrorMessage: true, errorMessage: data.error_msg})
       //   console.log(data.error_msg)

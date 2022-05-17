@@ -1,0 +1,58 @@
+.side-navbar {
+  height: 90vh;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 16%;
+  /* position: fixed; */
+  /* padding: 12px; */
+}
+
+.dark-side-navbar {
+  background-color: #313131;
+}
+
+.routes-list {
+  padding: 0;
+  list-style-type: none;
+
+  /* margin: 0; */
+}
+
+.link-item {
+  /* justify-content: space-around; */
+  cursor: pointer;
+}
+
+.link-item :hover {
+  background-color: #d7dfe9;
+  /* width: 100%; */
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+.link-name {
+  margin: 0 10px;
+  color: #1e293b;
+}
+
+.link-icon {
+  font-size: 18px;
+  color: #1e293b;
+  margin-left: 8px;
+  margin-right: 12px;
+}
+
+.social-media-logo {
+  height: 30px;
+  margin-right: 8px;
+}
+
+.side-bar-footer {
+  padding: 15px;
+}

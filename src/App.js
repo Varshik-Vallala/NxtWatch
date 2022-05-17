@@ -10,6 +10,10 @@ import Login from './components/Login'
 
 import Home from './components/Home'
 
+import Trending from './components/Trending'
+
+import Gaming from './components/Gaming'
+
 // Replace your code here
 class App extends Component {
   state = {darkTheme: false}
@@ -30,6 +34,8 @@ class App extends Component {
         <Switch>
           <Route path="/login" component={Login} />
           <Route exact path="/" component={Home} />
+          <Route exact path="/trending" component={Trending} />
+          <Route exact path="/gaming" component={Gaming} />
         </Switch>
       </NxtWatchContext.Provider>
     )
