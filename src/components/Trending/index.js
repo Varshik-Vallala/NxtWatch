@@ -12,6 +12,7 @@ class Trending extends Component {
         <div>
           <Routes />
         </div>
+        {/* <h1>TRending</h1> */}
         {/* <div>
           <ul>
             {routes.map(eachRoute => (

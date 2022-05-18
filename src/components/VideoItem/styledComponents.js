@@ -11,7 +11,7 @@ export const ThumbnailDetailsContainer = styled.div`
 `
 
 export const ThumbnailImage = styled.img`
-  width: ${props => (props.channelImage ? '40px' : '280px')};
+  width: ${props => (props.channelImage ? '35px' : '280px')};
   align-self: ${props => (props.channelImage ? 'flex-start' : null)};
   margin-top: ${props => (props.channelImage ? '10px' : null)};
 
@@ -20,30 +20,34 @@ export const ThumbnailImage = styled.img`
 
 export const VideoDetails = styled.div`
   margin: 6px;
+  text-decoration: none;
 `
 
 export const Title = styled.p`
+  text-decoration: none;
   margin: 5px 0px;
-  color: #231f20;
   font-size: 16px;
+  color: ${props => (props.darkTheme ? '#fff' : '#231f20')};
+  text-decoration: none;
 `
 
 export const ChannelName = styled.p`
   margin: 5px 0;
   font-size: 13px;
   font-weight: 500;
+  color: ${props => (props.darkTheme ? '#909090' : '#231f20')};
 `
 
-export const CountContainer = styled.div`
-  //   padding: 0;
+export const CountContainer = styled.ul`
+  padding: 0;
   display: flex;
   align-items: center;
-  margin: 0;
-  //   list-style-type: disc;
+  list-style-type: none;
 `
 
-export const Count = styled.p`
+export const Count = styled.li`
   font-size: 13px;
-  margin: 5px 6px 5px 0;
-  list-style-type: disc;
+  margin-right: 25px;
+  list-style-type: ${props => (props.dot ? 'disc' : null)};
+  color: ${props => (props.darkTheme ? ' #909090' : '#231f20')};
 `

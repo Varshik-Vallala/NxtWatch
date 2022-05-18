@@ -7,11 +7,8 @@ const Header = () => (
     {value => {
       const {onChangeDarkTheme, darkTheme} = value
 
-      console.log(darkTheme)
-
       const onClickDarkTheme = () => {
         onChangeDarkTheme()
-        console.log(darkTheme)
       }
 
       return (

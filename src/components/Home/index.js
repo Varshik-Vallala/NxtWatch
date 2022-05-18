@@ -2,6 +2,9 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
+
+import NxtWatchContext from '../../context/nxtWatchContext'
+
 import Header from '../Header'
 
 import Routes from '../Routes'
@@ -10,7 +13,12 @@ import VideoItem from '../VideoItem'
 
 import './index.css'
 
-import {SearchButton, MoviesUnOrderedList} from './styledComponents'
+import {
+  SearchButton,
+  MoviesUnOrderedList,
+  HomePageVideosContainer,
+  SearchBox,
+} from './styledComponents'
 
 class Home extends Component {
   state = {
@@ -102,19 +110,27 @@ class Home extends Component {
                 </div>
               </div>
             ) : null}
-            <div className="home-page-videos-container">
-              <div className="search-container">
-                <input
-                  className="search-field"
-                  type="search"
-                  placeholder="Search"
-                />
-                <SearchButton type="button">
-                  <AiOutlineSearch className="search-icon" />
-                </SearchButton>
-              </div>
-              {this.renderVideosList()}
-            </div>
+            <NxtWatchContext.Consumer>
+              {value => {
+                const {darkTheme} = value
+
+                return (
+                  <HomePageVideosContainer darkTheme={darkTheme}>
+                    <div className="search-container">
+                      <SearchBox
+                        type="search"
+                        placeholder="Search"
+                        darkTheme={darkTheme}
+                      />
+                      <SearchButton type="button">
+                        <AiOutlineSearch className="search-icon" />
+                      </SearchButton>
+                    </div>
+                    {this.renderVideosList()}
+                  </HomePageVideosContainer>
+                )
+              }}
+            </NxtWatchContext.Consumer>
           </div>
         </div>
       </>

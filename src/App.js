@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, BrowserRouter} from 'react-router-dom'
 
 import './App.css'
 
@@ -12,7 +12,10 @@ import Home from './components/Home'
 
 import Trending from './components/Trending'
 
+import Routes from './components/Routes'
+
 import Gaming from './components/Gaming'
+import Header from './components/Header'
 
 // Replace your code here
 class App extends Component {
@@ -33,10 +36,17 @@ class App extends Component {
       >
         <Switch>
           <Route path="/login" component={Login} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/trending" component={Trending} />
-          <Route exact path="/gaming" component={Gaming} />
         </Switch>
+
+        <div>
+          <Header />
+          <Routes />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/trending" component={Trending} />
+            <Route exact path="/gaming" component={Gaming} />
+          </Switch>
+        </div>
       </NxtWatchContext.Provider>
     )
   }

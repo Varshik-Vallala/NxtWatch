@@ -11,24 +11,26 @@
 
 .dark-side-navbar {
   background-color: #313131;
+  color: #f9f9f9;
 }
 
-.routes-list {
-  padding: 0;
-  list-style-type: none;
+/* .routes-list {
+  
 
-  /* margin: 0; */
-}
+  margin: 0;
+} */
 
 .link-item {
   /* justify-content: space-around; */
   cursor: pointer;
 }
 
-.link-item :hover {
+/* .link-item :hover {
   background-color: #d7dfe9;
-  /* width: 100%; */
-}
+} */
+/* width: 100%; */
+
+/* .link-icon : */
 
 .link {
   display: flex;

@@ -37,23 +37,22 @@
   cursor: pointer;
 }
 
-.home-page-videos-container {
-  background-color: #f4f4f4;
-  padding: 22px;
-  /* overflow-y: scroll; */
-}
+/* .home-page-videos-container {
+ 
+  
+} */
 
 .search-container {
   display: flex;
   align-items: center;
 }
 
-.search-field {
+/* .search-field {
   padding: 6px;
   width: 30%;
   outline: none;
   border: 1px solid #7e858e;
-}
+} */
 
 .search-icon {
   font-size: 18px;

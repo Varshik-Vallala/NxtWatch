@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 import {
   ListItem,
   ThumbnailImage,
@@ -8,6 +10,10 @@ import {
   CountContainer,
   Count,
 } from './styledComponents'
+
+import NxtWatchContext from '../../context/nxtWatchContext'
+
+import './index.css'
 
 const VideoItem = props => {
   const {videoDetails} = props
@@ -27,24 +33,38 @@ const VideoItem = props => {
   }
 
   return (
-    <ListItem>
-      <ThumbnailImage src={thumbnailUrl} alt={id} />
-      <ThumbnailDetailsContainer>
-        <ThumbnailImage
-          channelImage
-          src={updatedChannelDetails.profileImageUrl}
-          alt={updatedChannelDetails.name}
-        />
-        <VideoDetails>
-          <Title>{title}</Title>
-          <ChannelName>{updatedChannelDetails.name}</ChannelName>
-          <CountContainer>
-            <Count>{`${viewCount} views`}</Count>
-            <Count dot>{publishedAt}</Count>
-          </CountContainer>
-        </VideoDetails>
-      </ThumbnailDetailsContainer>
-    </ListItem>
+    <NxtWatchContext.Consumer>
+      {value => {
+        const {darkTheme} = value
+
+        return (
+          <ListItem>
+            <Link className="route-link" to={`/videos/${id}`}>
+              <ThumbnailImage src={thumbnailUrl} alt={id} />
+              <ThumbnailDetailsContainer>
+                <ThumbnailImage
+                  channelImage
+                  src={updatedChannelDetails.profileImageUrl}
+                  alt={updatedChannelDetails.name}
+                />
+                <VideoDetails>
+                  <Title darkTheme={darkTheme}>{title}</Title>
+                  <ChannelName darkTheme={darkTheme}>
+                    {updatedChannelDetails.name}
+                  </ChannelName>
+                  <CountContainer>
+                    <Count darkTheme={darkTheme}>{`${viewCount} views`}</Count>
+                    <Count dot darkTheme={darkTheme}>
+                      {publishedAt}
+                    </Count>
+                  </CountContainer>
+                </VideoDetails>
+              </ThumbnailDetailsContainer>
+            </Link>
+          </ListItem>
+        )
+      }}
+    </NxtWatchContext.Consumer>
   )
 }
 
