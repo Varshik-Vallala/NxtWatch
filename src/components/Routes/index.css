@@ -50,6 +50,10 @@
   margin-right: 12px;
 }
 
+.active-link-icon {
+  color: #ff0b37;
+}
+
 .social-media-logo {
   height: 30px;
   margin-right: 8px;

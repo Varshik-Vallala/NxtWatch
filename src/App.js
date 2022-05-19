@@ -1,6 +1,6 @@
 import {Component} from 'react'
 
-import {Switch, Route, BrowserRouter} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 
 import './App.css'
 
@@ -12,14 +12,17 @@ import Home from './components/Home'
 
 import Trending from './components/Trending'
 
-import Routes from './components/Routes'
+// import Routes from './components/Routes'
 
 import Gaming from './components/Gaming'
-import Header from './components/Header'
+// import Header from './components/Header'
 
 // Replace your code here
+
+const routeIds = ['HOME', 'TRENDING', 'GAMING', 'SAVEDVIDEOS']
+
 class App extends Component {
-  state = {darkTheme: false}
+  state = {darkTheme: false, activeRoute: routeIds[0]}
 
   onChangeDarkTheme = () => {
     this.setState(prevState => ({
@@ -27,20 +30,27 @@ class App extends Component {
     }))
   }
 
+  onChangeActiveRoute = id => {
+    this.setState({activeRoute: id})
+  }
+
   render() {
-    const {darkTheme} = this.state
+    const {darkTheme, activeRoute} = this.state
 
     return (
       <NxtWatchContext.Provider
-        value={{darkTheme, onChangeDarkTheme: this.onChangeDarkTheme}}
+        value={{
+          darkTheme,
+          onChangeDarkTheme: this.onChangeDarkTheme,
+          activeRoute,
+          onChangeActiveRoute: this.onChangeActiveRoute,
+        }}
       >
         <Switch>
           <Route path="/login" component={Login} />
         </Switch>
 
         <div>
-          <Header />
-          <Routes />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/trending" component={Trending} />

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const LinkName = styled.p`
   color: ${props => (props.darkTheme ? '#cccccc' : null)};
+  font-weight: ${props => (props.active ? '700' : null)};
 `
 
 export const LinkItemContainer = styled.div`
@@ -13,4 +14,9 @@ export const LinkItemContainer = styled.div`
 
 export const LinkItem = styled.li`
   background-color: ${props => (props.active ? '#d7dfe9' : null)};
+`
+export const Icon = styled.p`
+  padding: 0;
+  margin: 0;
+  color: ${props => (props.active ? 'red' : null)};
 `

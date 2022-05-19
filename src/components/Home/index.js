@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
+import Loader from 'react-loader-spinner'
+
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
@@ -18,12 +20,25 @@ import {
   MoviesUnOrderedList,
   HomePageVideosContainer,
   SearchBox,
+  LoaderContainer,
+  NoVideosImage,
+  EmptyListText,
+  RetryButton,
 } from './styledComponents'
+
+const initialApiStatus = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  inProgress: 'INPROGRESS',
+  failure: 'FAILURE',
+}
 
 class Home extends Component {
   state = {
     showPremiumPopUp: true,
     videosList: [],
+    searchInput: '',
+    apiStatus: initialApiStatus.initial,
   }
 
   componentDidMount() {
@@ -34,10 +49,18 @@ class Home extends Component {
     this.setState({showPremiumPopUp: false})
   }
 
+  onClickSearch = () => {
+    this.getHomeVideos()
+  }
+
   getHomeVideos = async () => {
+    this.setState({apiStatus: initialApiStatus.inProgress})
+
+    const {searchInput} = this.state
+
     const accessToken = Cookies.get('nxtWatch_token')
 
-    const url = 'https://apis.ccbp.in/videos/all?search='
+    const url = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const options = {
       method: 'GET',
       headers: {
@@ -46,24 +69,36 @@ class Home extends Component {
     }
 
     const response = await fetch(url, options)
-    const data = await response.json()
 
-    const updatedVideosList = data.videos.map(eachVideo => ({
-      id: eachVideo.id,
-      publishedAt: eachVideo.published_at,
-      channel: eachVideo.channel,
-      title: eachVideo.title,
-      thumbnailUrl: eachVideo.thumbnail_url,
-      viewCount: eachVideo.view_count,
-    }))
+    if (response.ok === true) {
+      const data = await response.json()
 
-    this.setState({videosList: updatedVideosList})
+      const updatedVideosList = data.videos.map(eachVideo => ({
+        id: eachVideo.id,
+        publishedAt: eachVideo.published_at,
+        channel: eachVideo.channel,
+        title: eachVideo.title,
+        thumbnailUrl: eachVideo.thumbnail_url,
+        viewCount: eachVideo.view_count,
+      }))
 
-    console.log(data)
+      this.setState({
+        videosList: updatedVideosList,
+        apiStatus: initialApiStatus.success,
+      })
+    } else {
+      this.setState({apiStatus: initialApiStatus.failure})
+    }
+
+    // console.log(data)
   }
 
   renderVideosList = () => {
     const {videosList} = this.state
+
+    if (videosList.length === 0) {
+      return this.renderEmptyListView()
+    }
 
     return (
       <MoviesUnOrderedList>
@@ -74,10 +109,51 @@ class Home extends Component {
     )
   }
 
-  render() {
-    const {showPremiumPopUp, videosList} = this.state
+  onChangeSearch = event => {
+    this.setState({searchInput: event.target.value})
+  }
 
-    console.log(videosList)
+  renderLoadingView = () => (
+    <LoaderContainer>
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </LoaderContainer>
+  )
+
+  renderEmptyListView = () => (
+    <LoaderContainer>
+      <NoVideosImage
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        alt=" no videos"
+      />
+      <EmptyListText heading>No Search results found</EmptyListText>
+      <EmptyListText>
+        Try different keys words or remove search filter
+      </EmptyListText>
+      <RetryButton type="button">Retry</RetryButton>
+    </LoaderContainer>
+  )
+
+  renderApiStatusView = () => {
+    const {apiStatus} = this.state
+
+    switch (apiStatus) {
+      case 'SUCCESS':
+        return this.renderVideosList()
+      case 'INPROGRESS':
+        return this.renderLoadingView()
+      case 'FAILURE':
+        return null
+      default:
+        return null
+    }
+  }
+
+  render() {
+    const {showPremiumPopUp, searchInput} = this.state
+
+    // console.log(searchInput)
+
+    // console.log(videosList)
 
     return (
       <>
@@ -121,12 +197,17 @@ class Home extends Component {
                         type="search"
                         placeholder="Search"
                         darkTheme={darkTheme}
+                        onChange={this.onChangeSearch}
+                        value={searchInput}
                       />
                       <SearchButton type="button">
-                        <AiOutlineSearch className="search-icon" />
+                        <AiOutlineSearch
+                          className="search-icon"
+                          onClick={this.onClickSearch}
+                        />
                       </SearchButton>
                     </div>
-                    {this.renderVideosList()}
+                    {this.renderApiStatusView()}
                   </HomePageVideosContainer>
                 )
               }}

@@ -20,45 +20,45 @@ const routes = [
     displayText: 'Home',
     link: '/',
     icon: <AiFillHome className="link-icon" />,
+    activeIcon: <AiFillHome className="link-icon active-link-icon" />,
   },
   {
     id: 'TRENDING',
     displayText: 'Trending',
     link: '/trending',
     icon: <AiFillFire className="link-icon" />,
+    activeIcon: <AiFillFire className="link-icon active-link-icon" />,
   },
   {
     id: 'GAMING',
     displayText: 'Gaming',
     link: '/gaming',
     icon: <SiYoutubegaming className="link-icon" />,
+    activeIcon: <SiYoutubegaming className="link-icon active-link-icon" />,
   },
   {
     id: 'SAVEDVIDEOS',
     displayText: 'SavedVideos',
     link: '/saved-videos',
     icon: <BiListPlus className="link-icon" />,
+    activeIcon: <BiListPlus className="link-icon active-link-icon" />,
   },
 ]
 
 class Routes extends Component {
-  state = {
-    activeRoute: routes[0].id,
-  }
-
-  onChangeActiveRoute = id => {
-    this.setState({activeRoute: id})
-  }
+  //   state = {
+  //     activeRoute: routes[0].id,
+  //   }
 
   render() {
-    const {activeRoute} = this.state
+    // const {activeRoute} = this.state
 
     // console.log(activeRoute)
 
     return (
       <NxtWatchContext.Consumer>
         {value => {
-          const {darkTheme} = value
+          const {darkTheme, activeRoute} = value
           return (
             <div
               className={
@@ -73,9 +73,11 @@ class Routes extends Component {
                     key={eachRoute.id}
                     routeDetails={eachRoute}
                     active={eachRoute.id === activeRoute}
-                    changeRoute={this.onChangeActiveRoute}
+                    // changeRoute={this.onChangeActiveRoute}
                   />
                 ))}
+
+                {/* Below Code is for individual rendering list items */}
 
                 {/* <Link className="route-link" to="/">
               <li className="link-item">

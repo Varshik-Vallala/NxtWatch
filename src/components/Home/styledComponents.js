@@ -29,3 +29,35 @@ export const MoviesUnOrderedList = styled.ul`
   display: flex;
   flex-wrap: wrap;
 `
+export const LoaderContainer = styled.div`
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const NoVideosImage = styled.img`
+  height: 350px;
+`
+export const EmptyListText = styled.p`
+  font-size: ${props => (props.heading ? '22px' : '16px')};
+  font-weight: ${props => (props.heading ? 'bold' : 'null')};
+  color: ${props => (props.heading ? '#1e293b' : '#475569')};
+  font-family: 'Roboto';
+  margin: 8px 0 0 0;
+`
+
+export const RetryButton = styled.button`
+  background-color: #4f46e5;
+  color: #f8fafc;
+  //   font-family: 'Roboto';
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  height: 35px;
+  width: 80px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 8px 0 0 0;
+`
