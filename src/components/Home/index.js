@@ -133,6 +133,21 @@ class Home extends Component {
     </LoaderContainer>
   )
 
+  renderFailureView = () => (
+    <LoaderContainer>
+      <NoVideosImage
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+        alt=" failure-image"
+      />
+      <EmptyListText heading>Opps! Something Went Wrong</EmptyListText>
+      <EmptyListText>
+        We are having some trouble to complete your request.
+      </EmptyListText>
+      <EmptyListText>Please try again.</EmptyListText>
+      <RetryButton type="button">Retry</RetryButton>
+    </LoaderContainer>
+  )
+
   renderApiStatusView = () => {
     const {apiStatus} = this.state
 
@@ -142,7 +157,7 @@ class Home extends Component {
       case 'INPROGRESS':
         return this.renderLoadingView()
       case 'FAILURE':
-        return null
+        return this.renderFailureView()
       default:
         return null
     }
@@ -200,7 +215,7 @@ class Home extends Component {
                         onChange={this.onChangeSearch}
                         value={searchInput}
                       />
-                      <SearchButton type="button">
+                      <SearchButton type="button" darkTheme={darkTheme}>
                         <AiOutlineSearch
                           className="search-icon"
                           onClick={this.onClickSearch}

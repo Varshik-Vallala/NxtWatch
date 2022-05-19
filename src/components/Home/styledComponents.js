@@ -15,7 +15,8 @@ export const SearchBox = styled.input`
 `
 
 export const SearchButton = styled.button`
-  background-color: #f4f4f4;
+  background-color: ${props => (props.darkTheme ? '#313131' : '#f4f4f4')};
+
   text-align: center;
   width: 60px;
   outline: none;
