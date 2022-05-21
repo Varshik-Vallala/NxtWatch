@@ -12,6 +12,8 @@ import Home from './components/Home'
 
 import Trending from './components/Trending'
 
+import VideoItemDetails from './components/VideoItemDetails'
+
 // import Routes from './components/Routes'
 
 import Gaming from './components/Gaming'
@@ -55,6 +57,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/trending" component={Trending} />
             <Route exact path="/gaming" component={Gaming} />
+            <Route exact path="/videos/:id" component={VideoItemDetails} />
           </Switch>
         </div>
       </NxtWatchContext.Provider>
