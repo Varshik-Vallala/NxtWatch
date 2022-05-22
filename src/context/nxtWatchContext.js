@@ -5,6 +5,8 @@ const NxtWatchContext = React.createContext({
   onChangeDarkTheme: () => {},
   activeRoute: 'HOME',
   onChangeActiveRoute: () => {},
+  savedVideosList: [],
+  onClickSaveVideo: () => {},
 })
 
 export default NxtWatchContext

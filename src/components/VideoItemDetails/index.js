@@ -35,7 +35,10 @@ import {
   ChannelDetailsContainer,
   ChannelName,
   OptionsContainer,
+  Description,
 } from './styledComponents'
+
+import NxtWatchContext from '../../context/nxtWatchContext'
 
 const initialApiStatus = {
   initial: 'INITIAL',
@@ -48,10 +51,27 @@ class VideoItemDetails extends Component {
   state = {
     videoData: {},
     apiStatus: initialApiStatus.initial,
+    like: false,
+    disLike: false,
+    videoAdded: false,
   }
 
   componentDidMount() {
     this.getVideoData()
+  }
+
+  onClickLike = () => {
+    this.setState(prevState => ({
+      like: !prevState.like,
+      disLike: false,
+    }))
+  }
+
+  onClickDisLike = () => {
+    this.setState(prevState => ({
+      disLike: !prevState.disLike,
+      like: false,
+    }))
   }
 
   updatedChannelDetails = channel => {
@@ -118,9 +138,10 @@ class VideoItemDetails extends Component {
   )
 
   renderVideoDetails = () => {
-    const {videoData} = this.state
+    const {videoData, like, disLike, videoAdded} = this.state
 
     const {
+      id,
       videoUrl,
       title,
       viewCount,
@@ -131,50 +152,95 @@ class VideoItemDetails extends Component {
       description,
     } = videoData
 
-    return (
-      <VideoContainer>
-        <div className="video">
-          <ReactPlayer
-            width="100%"
-            height="60vh"
-            url={videoUrl}
-            controls
-            origin="http://localhost:3000/"
-          />
-        </div>
-        <Title>{title}</Title>
-        <VideoDetailsContainer>
-          <OptionsContainer>
-            <ViewCount>{`${viewCount} views`}</ViewCount>
-            {/* <p className="dot">.</p> */}
-            <ViewCount>{publishedAt}</ViewCount>
-          </OptionsContainer>
-          <OptionsContainer>
-            <RowFlex>
-              <AiOutlineLike />
-              <p>Like</p>
-            </RowFlex>
-            <RowFlex>
-              <AiOutlineDislike />
-              <p>Dislike</p>
-            </RowFlex>
-            <RowFlex>
-              <BiListPlus />
-              <p>Save</p>
-            </RowFlex>
-          </OptionsContainer>
-        </VideoDetailsContainer>
-        <hr />
+    // console.log(id)
 
-        <ChannelDetailsContainer>
-          <ChannelImage src={channelProfileImage} alt={channelName} />
-          <div>
-            <ChannelName>{channelName}</ChannelName>
-            <ViewCount>{channelSubscriberCount} subscribers</ViewCount>
-            <p>{description}</p>
-          </div>
-        </ChannelDetailsContainer>
-      </VideoContainer>
+    // const checkVideo = savedVideosList.filter(id === savedVideosList.id) */
+
+    //  const checkVideo = savedVideosList.map(
+    //         eachVideo => eachVideo.id === id,
+    //       )
+
+    return (
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {darkTheme, onClickSaveVideo, savedVideosList} = value
+
+          const onSaveVideo = () => {
+            this.setState(prevState => ({
+              videoAdded: !prevState.videoAdded,
+            }))
+            onClickSaveVideo(videoData, id)
+          }
+
+          const isAdded = savedVideosList.some(eachVideo => eachVideo.id === id)
+
+          console.log(isAdded)
+
+          return (
+            <VideoContainer darkTheme={darkTheme}>
+              <div className="video">
+                <ReactPlayer
+                  width="100%"
+                  height="60vh"
+                  url={videoUrl}
+                  controls
+                  origin="http://localhost:3000/"
+                />
+              </div>
+              <Title darkTheme={darkTheme}>{title}</Title>
+              <VideoDetailsContainer>
+                <OptionsContainer>
+                  <ViewCount
+                    darkTheme={darkTheme}
+                  >{`${viewCount} views`}</ViewCount>
+                  {/* <p className="dot">.</p> */}
+                  <ViewCount darkTheme={darkTheme}>{publishedAt}</ViewCount>
+                </OptionsContainer>
+                <OptionsContainer>
+                  <RowFlex darkTheme={darkTheme} onClick={this.onClickLike}>
+                    <AiOutlineLike className={like ? 'active' : null} />
+                    <p className={like ? 'active' : null}>Like</p>
+                  </RowFlex>
+                  <RowFlex darkTheme={darkTheme} onClick={this.onClickDisLike}>
+                    <AiOutlineDislike className={disLike ? 'active' : null} />
+                    <p className={disLike ? 'active' : null}>Dislike</p>
+                  </RowFlex>
+                  <RowFlex
+                    // checkVideo={checkVideo}
+                    darkTheme={darkTheme}
+                    onClick={onSaveVideo}
+                  >
+                    {videoAdded || isAdded ? (
+                      <BiListCheck className="active" />
+                    ) : (
+                      <BiListPlus />
+                    )}
+                    {videoAdded || isAdded ? (
+                      <p className="active">Saved</p>
+                    ) : (
+                      <p>Save</p>
+                    )}
+
+                    {/* <p className={videoAdded ? 'active' : null}>Save</p> */}
+                  </RowFlex>
+                </OptionsContainer>
+              </VideoDetailsContainer>
+              <hr />
+
+              <ChannelDetailsContainer>
+                <ChannelImage src={channelProfileImage} alt={channelName} />
+                <div>
+                  <ChannelName darkTheme={darkTheme}>{channelName}</ChannelName>
+                  <ViewCount darkTheme={darkTheme}>
+                    {channelSubscriberCount} subscribers
+                  </ViewCount>
+                  <Description darkTheme={darkTheme}>{description}</Description>
+                </div>
+              </ChannelDetailsContainer>
+            </VideoContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 
