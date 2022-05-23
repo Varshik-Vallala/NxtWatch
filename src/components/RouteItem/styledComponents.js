@@ -13,8 +13,12 @@ export const LinkItemContainer = styled.div`
 `
 
 export const LinkItem = styled.li`
-  background-color: ${props => (props.active ? '#d7dfe9' : null)};
+  background-color: ${props => (props.active ? '#909090' : null)};
 `
+
+// (props.active ? '#d7dfe9' : null)
+
+// '#909090'
 export const Icon = styled.p`
   padding: 0;
   margin: 0;

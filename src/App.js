@@ -19,6 +19,7 @@ import SavedVideos from './components/SavedVideos'
 // import Routes from './components/Routes'
 
 import Gaming from './components/Gaming'
+
 // import Header from './components/Header'
 
 // Replace your code here
@@ -26,7 +27,11 @@ import Gaming from './components/Gaming'
 const routeIds = ['HOME', 'TRENDING', 'GAMING', 'SAVEDVIDEOS']
 
 class App extends Component {
-  state = {darkTheme: false, activeRoute: routeIds[0], savedVideosList: []}
+  state = {
+    darkTheme: false,
+    activeRoute: routeIds[0],
+    savedVideosList: [],
+  }
 
   onChangeDarkTheme = () => {
     this.setState(prevState => ({

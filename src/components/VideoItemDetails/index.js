@@ -54,6 +54,7 @@ class VideoItemDetails extends Component {
     like: false,
     disLike: false,
     videoAdded: false,
+    checkVideo: false,
   }
 
   componentDidMount() {
@@ -160,21 +161,33 @@ class VideoItemDetails extends Component {
     //         eachVideo => eachVideo.id === id,
     //       )
 
+    //   <BiListCheck className="active" />
+
+    //    <p className="active">Saved</p>
+
     return (
       <NxtWatchContext.Consumer>
         {value => {
           const {darkTheme, onClickSaveVideo, savedVideosList} = value
 
           const onSaveVideo = () => {
-            this.setState(prevState => ({
-              videoAdded: !prevState.videoAdded,
-            }))
             onClickSaveVideo(videoData, id)
+            this.setState({videoAdded: !videoAdded})
+
+            const checkVideoList = savedVideosList.some(
+              eachVideo => eachVideo.id === id,
+            )
+
+            console.log(checkVideoList)
+
+            return checkVideoList
           }
 
-          const isAdded = savedVideosList.some(eachVideo => eachVideo.id === id)
+          const checkVideoList = savedVideosList.some(
+            eachVideo => eachVideo.id === id,
+          )
 
-          console.log(isAdded)
+          /* this.setState({checkVideo: checkVideoList}) */
 
           return (
             <VideoContainer darkTheme={darkTheme}>
@@ -210,19 +223,23 @@ class VideoItemDetails extends Component {
                     darkTheme={darkTheme}
                     onClick={onSaveVideo}
                   >
-                    {videoAdded || isAdded ? (
+                    {videoAdded || checkVideoList ? (
                       <BiListCheck className="active" />
                     ) : (
                       <BiListPlus />
                     )}
-                    {videoAdded || isAdded ? (
+                    {videoAdded || checkVideoList ? (
                       <p className="active">Saved</p>
                     ) : (
                       <p>Save</p>
                     )}
-
-                    {/* <p className={videoAdded ? 'active' : null}>Save</p> */}
                   </RowFlex>
+                  {/* {checkVideo ? (
+                    <RowFlex darkTheme={darkTheme} onClick={onSaveVideo}>
+                      <BiListCheck className="active" />
+                      <p className="active">Saved</p>
+                    </RowFlex>
+                  ) : null} */}
                 </OptionsContainer>
               </VideoDetailsContainer>
               <hr />

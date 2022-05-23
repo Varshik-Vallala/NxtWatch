@@ -7,6 +7,7 @@ const NxtWatchContext = React.createContext({
   onChangeActiveRoute: () => {},
   savedVideosList: [],
   onClickSaveVideo: () => {},
+  //   saveToggle: false,
 })
 
 export default NxtWatchContext

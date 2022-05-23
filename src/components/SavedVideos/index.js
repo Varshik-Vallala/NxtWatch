@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {Link} from 'react-router-dom'
+
 import {BiListCheck} from 'react-icons/bi'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
@@ -17,6 +19,7 @@ import {
   SavedVideo,
   SavedVideoThumbNail,
   SavedVideoHeading,
+  SavedVideoChannelName,
 } from './styledComponents'
 
 import {CountContainer, Count} from '../VideoItem/styledComponents'
@@ -52,21 +55,29 @@ class SavedVideos extends Component {
                           </PageHeading>
                           <SavedVideosListContainer>
                             {savedVideosList.map(eachVideo => (
-                              <SavedVideo>
-                                <SavedVideoThumbNail
-                                  src={eachVideo.thumbnailUrl}
-                                />
-                                <div>
-                                  <SavedVideoHeading>
-                                    {eachVideo.title}
-                                  </SavedVideoHeading>
-                                  <p>{eachVideo.channelName}</p>
-                                  <CountContainer>
-                                    <Count>{`${eachVideo.viewCount} views`}</Count>
-                                    <Count dot>{eachVideo.publishedAt}</Count>
-                                  </CountContainer>
-                                </div>
-                              </SavedVideo>
+                              <Link
+                                key={eachVideo.id}
+                                className="link"
+                                to={`/videos/${eachVideo.id}`}
+                              >
+                                <SavedVideo>
+                                  <SavedVideoThumbNail
+                                    src={eachVideo.thumbnailUrl}
+                                  />
+                                  <div>
+                                    <SavedVideoHeading>
+                                      {eachVideo.title}
+                                    </SavedVideoHeading>
+                                    <SavedVideoChannelName>
+                                      {eachVideo.channelName}
+                                    </SavedVideoChannelName>
+                                    <CountContainer>
+                                      <Count>{`${eachVideo.viewCount} views`}</Count>
+                                      <Count dot>{eachVideo.publishedAt}</Count>
+                                    </CountContainer>
+                                  </div>
+                                </SavedVideo>
+                              </Link>
                             ))}
                           </SavedVideosListContainer>
                         </>

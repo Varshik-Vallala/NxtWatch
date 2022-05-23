@@ -63,4 +63,8 @@ export const SavedVideoThumbNail = styled.img`
 `
 export const SavedVideoHeading = styled.h3`
   margin-top: 0;
+  color: #000;
+`
+export const SavedVideoChannelName = styled.p`
+  color: '#000';
 `

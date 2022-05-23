@@ -38,7 +38,7 @@ const RouteItem = props => {
               onClick={changeActiveRoute}
               active={active}
               className="link-item"
-              darkTheme
+              darkTheme={darkTheme}
             >
               <LinkItemContainer darkTheme={darkTheme}>
                 {/* {showIcon()} we should not use {icon} <- like this use like this -> icon for */}
