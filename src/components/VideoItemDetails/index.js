@@ -54,7 +54,7 @@ class VideoItemDetails extends Component {
     like: false,
     disLike: false,
     videoAdded: false,
-    checkVideo: false,
+    // checkVideo: false,
   }
 
   componentDidMount() {
@@ -174,20 +174,29 @@ class VideoItemDetails extends Component {
             onClickSaveVideo(videoData, id)
             this.setState({videoAdded: !videoAdded})
 
-            const checkVideoList = savedVideosList.some(
-              eachVideo => eachVideo.id === id,
-            )
-
-            console.log(checkVideoList)
-
-            return checkVideoList
+            /* console.log(checkVideoList) */
           }
 
           const checkVideoList = savedVideosList.some(
             eachVideo => eachVideo.id === id,
           )
 
-          /* this.setState({checkVideo: checkVideoList}) */
+          /*  const checkVideoList = savedVideosList.some(
+            eachVideo => eachVideo.id === id,
+          ) */
+
+          /* const removeSavedVideo = () => {
+            console.log('removed clicked')
+
+            onClickSaveVideo(videoData, id) 
+
+            this.setState({
+              checkVideo: savedVideosList.some(
+                eachVideo => eachVideo.id === id,
+              ),
+            })
+          }
+          */
 
           return (
             <VideoContainer darkTheme={darkTheme}>
@@ -218,6 +227,12 @@ class VideoItemDetails extends Component {
                     <AiOutlineDislike className={disLike ? 'active' : null} />
                     <p className={disLike ? 'active' : null}>Dislike</p>
                   </RowFlex>
+                  {/* {checkVideo ? (
+                    <RowFlex onClick={removeSavedVideo}>
+                      <BiListCheck className="active" />
+                      <p className="active">Saved</p>
+                    </RowFlex>
+                  ) : ( */}
                   <RowFlex
                     // checkVideo={checkVideo}
                     darkTheme={darkTheme}
@@ -234,6 +249,7 @@ class VideoItemDetails extends Component {
                       <p>Save</p>
                     )}
                   </RowFlex>
+
                   {/* {checkVideo ? (
                     <RowFlex darkTheme={darkTheme} onClick={onSaveVideo}>
                       <BiListCheck className="active" />

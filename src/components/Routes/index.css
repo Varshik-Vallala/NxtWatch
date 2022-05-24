@@ -50,6 +50,13 @@
   margin-right: 12px;
 }
 
+.dark-link-icon {
+  font-size: 18px;
+  color: #909090;
+  margin-left: 8px;
+  margin-right: 12px;
+}
+
 .active-link-icon {
   color: #ff0b37;
 }

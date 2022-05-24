@@ -21,6 +21,7 @@ const routes = [
     link: '/',
     icon: <AiFillHome className="link-icon" />,
     activeIcon: <AiFillHome className="link-icon active-link-icon" />,
+    darkThemeIcon: <AiFillHome className="dark-link-icon" />,
   },
   {
     id: 'TRENDING',
@@ -28,6 +29,7 @@ const routes = [
     link: '/trending',
     icon: <AiFillFire className="link-icon" />,
     activeIcon: <AiFillFire className="link-icon active-link-icon" />,
+    darkThemeIcon: <AiFillFire className="dark-link-icon" />,
   },
   {
     id: 'GAMING',
@@ -35,6 +37,7 @@ const routes = [
     link: '/gaming',
     icon: <SiYoutubegaming className="link-icon" />,
     activeIcon: <SiYoutubegaming className="link-icon active-link-icon" />,
+    darkThemeIcon: <SiYoutubegaming className="dark-link-icon" />,
   },
   {
     id: 'SAVEDVIDEOS',
@@ -42,6 +45,7 @@ const routes = [
     link: '/saved-videos',
     icon: <BiListPlus className="link-icon" />,
     activeIcon: <BiListPlus className="link-icon active-link-icon" />,
+    darkThemeIcon: <BiListPlus className="dark-link-icon" />,
   },
 ]
 

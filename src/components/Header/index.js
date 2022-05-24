@@ -1,4 +1,10 @@
+import Popup from 'reactjs-popup'
+
+import 'reactjs-popup/dist/index.css'
+
 import './index.css'
+
+import {withRouter} from 'react-router-dom'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
 
@@ -10,6 +16,34 @@ const Header = () => (
       const onClickDarkTheme = () => {
         onChangeDarkTheme()
       }
+
+      const popUpContainer = () => (
+        <div className="popup-container">
+          <Popup
+            modal
+            trigger={
+              <button type="button" className="trigger-button">
+                Trigger
+              </button>
+            }
+          >
+            {close => (
+              <>
+                <div>
+                  <p>React is a popular and widely used programming language</p>
+                </div>
+                <button
+                  type="button"
+                  className="trigger-button"
+                  onClick={() => close()}
+                >
+                  Close
+                </button>
+              </>
+            )}
+          </Popup>
+        </div>
+      )
 
       return (
         <nav className={darkTheme ? 'navbar dark' : 'navbar'}>
@@ -43,6 +77,7 @@ const Header = () => (
             <button
               type="button"
               className={darkTheme ? 'logout-button light' : 'logout-button'}
+              onClick={popUpContainer}
             >
               Logout
             </button>
@@ -53,4 +88,4 @@ const Header = () => (
   </NxtWatchContext.Consumer>
 )
 
-export default Header
+export default withRouter(Header)
