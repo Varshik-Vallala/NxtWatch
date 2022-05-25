@@ -61,3 +61,16 @@
   border-radius: 4px;
   outline: none;
 }
+
+/* .popup-container-mine {
+  width: 10%;
+} */
+
+.confirm-button {
+  color: #fff;
+  background-color: #3b82f6;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px;
+}

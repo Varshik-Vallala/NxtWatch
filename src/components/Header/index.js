@@ -2,13 +2,15 @@ import Popup from 'reactjs-popup'
 
 import 'reactjs-popup/dist/index.css'
 
+import Cookies from 'js-cookie'
+
 import './index.css'
 
 import {withRouter} from 'react-router-dom'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
 
-const Header = () => (
+const Header = props => (
   <NxtWatchContext.Consumer>
     {value => {
       const {onChangeDarkTheme, darkTheme} = value
@@ -17,33 +19,12 @@ const Header = () => (
         onChangeDarkTheme()
       }
 
-      const popUpContainer = () => (
-        <div className="popup-container">
-          <Popup
-            modal
-            trigger={
-              <button type="button" className="trigger-button">
-                Trigger
-              </button>
-            }
-          >
-            {close => (
-              <>
-                <div>
-                  <p>React is a popular and widely used programming language</p>
-                </div>
-                <button
-                  type="button"
-                  className="trigger-button"
-                  onClick={() => close()}
-                >
-                  Close
-                </button>
-              </>
-            )}
-          </Popup>
-        </div>
-      )
+      const {history} = props
+
+      const onClickLogout = () => {
+        Cookies.remove('nxtWatch_token')
+        history.replace('/login')
+      }
 
       return (
         <nav className={darkTheme ? 'navbar dark' : 'navbar'}>
@@ -74,13 +55,44 @@ const Header = () => (
               alt="profile"
               className="profile-image"
             />
-            <button
-              type="button"
-              className={darkTheme ? 'logout-button light' : 'logout-button'}
-              onClick={popUpContainer}
+            <Popup
+              modal
+              trigger={
+                <button
+                  type="button"
+                  className={
+                    darkTheme ? 'logout-button light' : 'logout-button'
+                  }
+                  //   onClick={popUpContainer}
+                >
+                  Logout
+                </button>
+              }
             >
-              Logout
-            </button>
+              {close => (
+                <>
+                  <div className="popup-container-mine">
+                    <p>Are you sure, you want to logout?</p>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      className="trigger-button"
+                      onClick={() => close()}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      className="confirm-button"
+                      onClick={onClickLogout}
+                      type="button"
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                </>
+              )}
+            </Popup>
           </div>
         </nav>
       )
