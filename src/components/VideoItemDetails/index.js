@@ -4,7 +4,7 @@ import {AiOutlineDislike, AiOutlineLike} from 'react-icons/ai'
 
 import {BiListCheck, BiListPlus} from 'react-icons/bi'
 
-import {formatDistanceToNow} from 'date-fns'
+// import {formatDistanceToNow} from 'date-fns'
 
 import Loader from 'react-loader-spinner'
 
@@ -164,6 +164,35 @@ class VideoItemDetails extends Component {
     //   <BiListCheck className="active" />
 
     //    <p className="active">Saved</p>
+
+    // console.log(publishedAt.split(','))
+
+    // const modifyDate = () => {
+    //   const months = [
+    //     'Jan',
+    //     'Feb',
+    //     'Mar',
+    //     'Apr',
+    //     'May',
+    //     'Jun',
+    //     'Jul',
+    //     'Aug',
+    //     'Sep',
+    //     'Oct',
+    //     'Nov',
+    //     'Dec',
+    //   ]
+
+    //   const [month, year] = publishedAt.split(',')
+    //   const m = month.slice(0, 3)
+    //   const date = month.slice(-2)
+
+    //   const monthNumber = months.indexOf(m)
+
+    //   return formatDistanceToNow(
+    //     new Date(parseInt(year), parseInt(monthNumber), parseInt(date)),
+    //   )
+    // }
 
     return (
       <NxtWatchContext.Consumer>

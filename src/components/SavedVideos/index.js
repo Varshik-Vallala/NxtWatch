@@ -35,7 +35,7 @@ class SavedVideos extends Component {
     return (
       <NxtWatchContext.Consumer>
         {value => {
-          const {savedVideosList} = value
+          const {savedVideosList, darkTheme} = value
 
           return (
             <>
@@ -44,14 +44,16 @@ class SavedVideos extends Component {
                 <Routes />
                 <div className="home-page">
                   <div>
-                    <SavedVideosContainer>
+                    <SavedVideosContainer darkTheme={darkTheme}>
                       {savedVideosList.length > 0 ? (
                         <>
-                          <PageHeading>
-                            <PageIcon>
+                          <PageHeading darkTheme={darkTheme}>
+                            <PageIcon darkTheme={darkTheme}>
                               <BiListCheck className="page-icon" />
                             </PageIcon>
-                            <Heading>Saved Videos</Heading>
+                            <Heading darkTheme={darkTheme}>
+                              Saved Videos
+                            </Heading>
                           </PageHeading>
                           <SavedVideosListContainer>
                             {savedVideosList.map(eachVideo => (
@@ -65,15 +67,21 @@ class SavedVideos extends Component {
                                     src={eachVideo.thumbnailUrl}
                                   />
                                   <div>
-                                    <SavedVideoHeading>
+                                    <SavedVideoHeading darkTheme={darkTheme}>
                                       {eachVideo.title}
                                     </SavedVideoHeading>
-                                    <SavedVideoChannelName>
+                                    <SavedVideoChannelName
+                                      darkTheme={darkTheme}
+                                    >
                                       {eachVideo.channelName}
                                     </SavedVideoChannelName>
                                     <CountContainer>
-                                      <Count>{`${eachVideo.viewCount} views`}</Count>
-                                      <Count dot>{eachVideo.publishedAt}</Count>
+                                      <Count
+                                        darkTheme={darkTheme}
+                                      >{`${eachVideo.viewCount} views`}</Count>
+                                      <Count darkTheme={darkTheme} dot>
+                                        {eachVideo.publishedAt}
+                                      </Count>
                                     </CountContainer>
                                   </div>
                                 </SavedVideo>
@@ -82,13 +90,15 @@ class SavedVideos extends Component {
                           </SavedVideosListContainer>
                         </>
                       ) : (
-                        <NoSavedVideos>
+                        <NoSavedVideos darkTheme={darkTheme}>
                           <EmptyImageView
                             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
                             alt="no saved videos"
                           />
-                          <NoVideosName>No saved videos found</NoVideosName>
-                          <NoVideosParagraph>
+                          <NoVideosName darkTheme={darkTheme}>
+                            No saved videos found
+                          </NoVideosName>
+                          <NoVideosParagraph darkTheme={darkTheme}>
                             You can save your videos while watching them
                           </NoVideosParagraph>
                         </NoSavedVideos>

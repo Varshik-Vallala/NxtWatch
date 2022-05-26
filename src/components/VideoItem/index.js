@@ -1,3 +1,5 @@
+import {formatDistanceToNow} from 'date-fns'
+
 import {Link} from 'react-router-dom'
 
 import {
@@ -37,6 +39,37 @@ const VideoItem = props => {
       {value => {
         const {darkTheme} = value
 
+        const modifyDate = () => {
+          const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+          ]
+
+          const [month, year] = publishedAt.split(',')
+          const m = month.slice(0, 3)
+          const date = month.slice(-2)
+
+          const monthNumber = months.indexOf(m)
+
+          /* console.log(monthNumber, year, date) */
+
+          const word = formatDistanceToNow(
+            new Date(parseInt(year), parseInt(monthNumber), parseInt(date)),
+          )
+
+          return word.slice(-7).concat(' ago')
+        }
+
         return (
           <ListItem>
             <Link className="route-link" to={`/videos/${id}`}>
@@ -55,7 +88,7 @@ const VideoItem = props => {
                   <CountContainer>
                     <Count darkTheme={darkTheme}>{`${viewCount} views`}</Count>
                     <Count dot darkTheme={darkTheme}>
-                      {publishedAt}
+                      {modifyDate()}
                     </Count>
                   </CountContainer>
                 </VideoDetails>

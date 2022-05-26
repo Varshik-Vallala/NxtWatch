@@ -3,12 +3,12 @@ import styled from 'styled-components'
 export const PageHeading = styled.div`
   display: flex;
   align-items: center;
-  background-color: #ebebeb;
   padding: 12px 60px;
+  background-color: ${props => (props.darkTheme ? '#231f20' : '#ebebeb')};
 `
 
 export const PageIcon = styled.div`
-  background-color: #d7dfe9;
+  background-color: ${props => (props.darkTheme ? '#0f0f0f' : '#d7dfe9')};
   border-radius: 30px;
   padding: 10px;
   text-align: center;
@@ -20,10 +20,12 @@ export const PageIcon = styled.div`
 
 export const Heading = styled.h2`
   font-family: 'Roboto';
+  color: ${props => (props.darkTheme ? '#f1f1f1' : null)};
 `
 
 export const SavedVideosContainer = styled.div`
-  background-color: #f1f1f1;
+  background-color: ${props => (props.darkTheme ? '#0f0f0f' : ' #f1f1f1;')};
+  min-height: 100vh;
 `
 
 export const NoSavedVideos = styled.div`
@@ -32,6 +34,7 @@ export const NoSavedVideos = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${props => (props.darkTheme ? '#0f0f0f' : null)};
 `
 
 export const EmptyImageView = styled.img`
@@ -39,10 +42,12 @@ export const EmptyImageView = styled.img`
 `
 export const NoVideosName = styled.h2`
   margin: 10px 0;
+  color: ${props => (props.darkTheme ? '#f1f1f1' : null)};
 `
 
 export const NoVideosParagraph = styled.p`
   margin: 5px 0;
+  color: ${props => (props.darkTheme ? '#f1f1f1' : null)};
 `
 
 export const SavedVideosListContainer = styled.ul`
@@ -63,8 +68,11 @@ export const SavedVideoThumbNail = styled.img`
 `
 export const SavedVideoHeading = styled.h3`
   margin-top: 0;
-  color: #000;
+
+  color: ${props => (props.darkTheme ? '#f1f1f1' : '#000')};
 `
 export const SavedVideoChannelName = styled.p`
   color: '#000';
+  font-size: 14px;
+  color: ${props => (props.darkTheme ? '#d7dfe9' : null)};
 `

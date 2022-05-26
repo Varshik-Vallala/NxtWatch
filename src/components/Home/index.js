@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 
+import {Redirect} from 'react-router-dom'
+
 import Loader from 'react-loader-spinner'
 
 import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
@@ -169,6 +171,11 @@ class Home extends Component {
     // console.log(searchInput)
 
     // console.log(videosList)
+
+    const token = Cookies.get('nxtWatch_token')
+    if (token === undefined) {
+      return <Redirect to="/login" />
+    }
 
     return (
       <>

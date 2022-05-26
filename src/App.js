@@ -16,6 +16,8 @@ import VideoItemDetails from './components/VideoItemDetails'
 
 import SavedVideos from './components/SavedVideos'
 
+import ProtectedRoute from './components/ProtectedRoute'
+
 // import Routes from './components/Routes'
 
 import Gaming from './components/Gaming'
@@ -108,7 +110,7 @@ class App extends Component {
 
         <div>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <ProtectedRoute exact path="/" component={Home} />
             <Route exact path="/trending" component={Trending} />
             <Route exact path="/gaming" component={Gaming} />
             <Route exact path="/videos/:id" component={VideoItemDetails} />

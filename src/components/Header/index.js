@@ -63,21 +63,22 @@ const Header = props => (
                   className={
                     darkTheme ? 'logout-button light' : 'logout-button'
                   }
-                  //   onClick={popUpContainer}
                 >
                   Logout
                 </button>
               }
             >
               {close => (
-                <>
-                  <div className="popup-container-mine">
-                    <p>Are you sure, you want to logout?</p>
-                  </div>
+                <div className={darkTheme ? 'dark-popup' : ''}>
                   <div>
+                    <p className={darkTheme ? 'white' : null}>
+                      Are you sure, you want to logout?
+                    </p>
+                  </div>
+                  <div className="buttons-container">
                     <button
                       type="button"
-                      className="trigger-button"
+                      className={darkTheme ? 'white-button' : 'cancel-button'}
                       onClick={() => close()}
                     >
                       Cancel
@@ -90,7 +91,7 @@ const Header = props => (
                       Confirm
                     </button>
                   </div>
-                </>
+                </div>
               )}
             </Popup>
           </div>

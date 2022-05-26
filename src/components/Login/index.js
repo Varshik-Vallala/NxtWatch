@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {Redirect} from 'react-router-dom'
+
 import Cookies from 'js-cookie'
 
 import './index.css'
@@ -28,6 +30,8 @@ class Login extends Component {
   }
 
   submitForm = async event => {
+    const {history} = this.props
+
     event.preventDefault()
 
     const {username, password} = this.state
@@ -43,9 +47,9 @@ class Login extends Component {
     const data = await response.json()
 
     if (response.ok === true) {
-      console.log(data)
-
       Cookies.set('nxtWatch_token', data.jwt_token, {expires: 30})
+      //   console.log(data)
+      history.replace('/')
     } else {
       this.setState({showErrorMessage: true, errorMessage: data.error_msg})
       //   console.log(data.error_msg)
@@ -61,6 +65,11 @@ class Login extends Component {
       errorMessage,
     } = this.state
     // console.log(showPassword)
+
+    const token = Cookies.get('nxtWatch_token')
+    if (token !== undefined) {
+      return <Redirect to="/" />
+    }
 
     return (
       <div className="login-form-container">
