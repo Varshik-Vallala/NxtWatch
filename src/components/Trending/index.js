@@ -39,8 +39,7 @@ class Trending extends Component {
   }
 
   getTrendingVideos = async () => {
-    this.setState({apiStatus: apiStatus.inProgress})
-
+    this.setState({apiStatus: initialApiStatus.inProgress})
     const token = Cookies.get('nxtWatch_token')
 
     const url = 'https://apis.ccbp.in/videos/trending'
@@ -71,10 +70,26 @@ class Trending extends Component {
 
       this.setState({
         trendingVideos: updatedVideosList,
-        apiStatus: apiStatus.success,
+        apiStatus: initialApiStatus.success,
       })
+    } else {
+      this.setState({apiStatus: initialApiStatus.failure})
     }
   }
+
+  renderApiStatus = () => {
+    const {apiStatus} = this.state
+
+    switch (apiStatus) {
+      case 'SUCCESS':
+        return null
+
+      default:
+        return null
+    }
+  }
+
+  renderVideosList = () => {}
 
   render() {
     const {trendingVideos} = this.state

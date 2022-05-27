@@ -150,16 +150,16 @@ class Home extends Component {
     </LoaderContainer>
   )
 
-  renderApiStatusView = () => {
+  renderApiStatusView = darkTheme => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case 'SUCCESS':
-        return this.renderVideosList()
+        return this.renderVideosList(darkTheme)
       case 'INPROGRESS':
-        return this.renderLoadingView()
+        return this.renderLoadingView(darkTheme)
       case 'FAILURE':
-        return this.renderFailureView()
+        return this.renderFailureView(darkTheme)
       default:
         return null
     }
@@ -229,7 +229,7 @@ class Home extends Component {
                         />
                       </SearchButton>
                     </div>
-                    {this.renderApiStatusView()}
+                    {this.renderApiStatusView(darkTheme)}
                   </HomePageVideosContainer>
                 )
               }}
