@@ -22,6 +22,7 @@ import {
   LoaderContainer,
   NoVideosImage,
   EmptyListText,
+  EmptyListHeading,
   RetryButton,
 } from '../Home/styledComponents'
 
@@ -132,8 +133,8 @@ class VideoItemDetails extends Component {
     // console.log(data)
   }
 
-  renderLoadingView = () => (
-    <LoaderContainer>
+  renderLoadingView = darkTheme => (
+    <LoaderContainer darkTheme={darkTheme}>
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
@@ -152,6 +153,8 @@ class VideoItemDetails extends Component {
       channelSubscriberCount,
       description,
     } = videoData
+
+    console.log(videoData)
 
     // console.log(id)
 
@@ -306,31 +309,35 @@ class VideoItemDetails extends Component {
     )
   }
 
-  renderFailureView = () => (
-    <LoaderContainer>
+  renderFailureView = darkTheme => (
+    <LoaderContainer darkTheme={darkTheme}>
       <NoVideosImage
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
         alt=" failure-image"
       />
-      <EmptyListText heading>Opps! Something Went Wrong</EmptyListText>
-      <EmptyListText>
+      <EmptyListHeading darkTheme={darkTheme}>
+        Opps! Something Went Wrong
+      </EmptyListHeading>
+      <EmptyListText darkTheme={darkTheme}>
         We are having some trouble to complete your request.
       </EmptyListText>
-      <EmptyListText>Please try again.</EmptyListText>
-      <RetryButton type="button">Retry</RetryButton>
+      <EmptyListText darkTheme={darkTheme}>Please try again.</EmptyListText>
+      <RetryButton darkTheme={darkTheme} type="button">
+        Retry
+      </RetryButton>
     </LoaderContainer>
   )
 
-  renderApiStatus = () => {
+  renderApiStatus = darkTheme => {
     const {apiStatus} = this.state
 
     switch (apiStatus) {
       case 'SUCCESS':
         return this.renderVideoDetails()
       case 'INPROGRESS':
-        return this.renderLoadingView()
+        return this.renderLoadingView(darkTheme)
       case 'FAILURE':
-        return null
+        return this.renderFailureView(darkTheme)
       default:
         return null
     }
@@ -348,7 +355,15 @@ class VideoItemDetails extends Component {
         <Header />
         <div className="home-container">
           <Routes />
-          <div className="home-page">{this.renderApiStatus()}</div>
+          <div className="home-page">
+            <NxtWatchContext.Consumer>
+              {value => {
+                const {darkTheme} = value
+
+                return this.renderApiStatus(darkTheme)
+              }}
+            </NxtWatchContext.Consumer>
+          </div>
         </div>
       </>
     )

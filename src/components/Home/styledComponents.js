@@ -36,6 +36,7 @@ export const LoaderContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${props => (props.darkTheme ? '#0f0f0f' : null)};
 `
 
 export const NoVideosImage = styled.img`
@@ -43,14 +44,20 @@ export const NoVideosImage = styled.img`
 `
 export const EmptyListText = styled.p`
   font-size: ${props => (props.heading ? '22px' : '16px')};
-  font-weight: ${props => (props.heading ? 'bold' : 'null')};
-  color: ${props => (props.heading ? '#1e293b' : '#475569')};
+  //   font-weight: ${props => (props.heading ? 'bold' : 'null')};
+  color: ${props => (props.darkTheme ? '#475569' : '#0f0f0f')};
   font-family: 'Roboto';
   margin: 8px 0 0 0;
 `
 
+export const EmptyListHeading = styled.h2`
+font-size: 22px;
+color: ${props => (props.darkTheme ? '#f8fafc' : '#1e293b')}
+margin: 8px 0 0 0;
+`
+
 export const RetryButton = styled.button`
-  background-color: #4f46e5;
+  background-color: ${props => (props.darkTheme ? ' #3b82f6' : '#4f46e5')};
   color: #f8fafc;
   //   font-family: 'Roboto';
   outline: none;

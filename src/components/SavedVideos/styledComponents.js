@@ -25,7 +25,7 @@ export const Heading = styled.h2`
 
 export const SavedVideosContainer = styled.div`
   background-color: ${props => (props.darkTheme ? '#0f0f0f' : ' #f1f1f1;')};
-  min-height: 100vh;
+  min-height: 90vh;
 `
 
 export const NoSavedVideos = styled.div`
@@ -64,15 +64,14 @@ export const SavedVideo = styled.li`
 
 export const SavedVideoThumbNail = styled.img`
   height: 200px;
+  width: 350px;
   margin-right: 20px;
 `
 export const SavedVideoHeading = styled.h3`
   margin-top: 0;
-
   color: ${props => (props.darkTheme ? '#f1f1f1' : '#000')};
 `
 export const SavedVideoChannelName = styled.p`
-  color: '#000';
   font-size: 14px;
-  color: ${props => (props.darkTheme ? '#d7dfe9' : null)};
+  color: ${props => (props.darkTheme ? '#d7dfe9' : '#383838')};
 `

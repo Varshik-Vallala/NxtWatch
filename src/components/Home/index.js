@@ -25,6 +25,7 @@ import {
   LoaderContainer,
   NoVideosImage,
   EmptyListText,
+  EmptyListHeading,
   RetryButton,
 } from './styledComponents'
 
@@ -115,8 +116,8 @@ class Home extends Component {
     this.setState({searchInput: event.target.value})
   }
 
-  renderLoadingView = () => (
-    <LoaderContainer>
+  renderLoadingView = darkTheme => (
+    <LoaderContainer darkTheme={darkTheme}>
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
@@ -127,7 +128,7 @@ class Home extends Component {
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
         alt=" no videos"
       />
-      <EmptyListText heading>No Search results found</EmptyListText>
+      <EmptyListHeading>No Search results found</EmptyListHeading>
       <EmptyListText>
         Try different keys words or remove search filter
       </EmptyListText>
@@ -135,14 +136,16 @@ class Home extends Component {
     </LoaderContainer>
   )
 
-  renderFailureView = () => (
-    <LoaderContainer>
+  renderFailureView = darkTheme => (
+    <LoaderContainer darkTheme={darkTheme}>
       <NoVideosImage
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
         alt=" failure-image"
       />
-      <EmptyListText heading>Opps! Something Went Wrong</EmptyListText>
-      <EmptyListText>
+      <EmptyListHeading darkTheme={darkTheme}>
+        Opps! Something Went Wrong
+      </EmptyListHeading>
+      <EmptyListText darkTheme={darkTheme}>
         We are having some trouble to complete your request.
       </EmptyListText>
       <EmptyListText>Please try again.</EmptyListText>
