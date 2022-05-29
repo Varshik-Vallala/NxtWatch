@@ -8,17 +8,11 @@ import Loader from 'react-loader-spinner'
 
 import Cookies from 'js-cookie'
 
-import Header from '../Header'
-
-import Routes from '../Routes'
-
 import {
   PageHeading,
   PageIcon,
   Heading,
   SavedVideosContainer,
-  SavedVideosListContainer,
-  SavedVideoThumbNail,
   SavedVideoHeading,
   //   SavedVideoChannelName,
 } from '../SavedVideos/styledComponents'
@@ -173,33 +167,33 @@ class Gaming extends Component {
 
     return (
       <>
-        <Header />
+        {/* <Header />
         <div className="home-container">
           <Routes />
-          <div className="home-page">
-            <NxtWatchContext.Consumer>
-              {value => {
-                const {darkTheme} = value
+          <div className="home-page"> */}
+        <NxtWatchContext.Consumer>
+          {value => {
+            const {darkTheme} = value
 
-                return (
-                  <div>
-                    <SavedVideosContainer darkTheme={darkTheme}>
-                      <>
-                        <PageHeading darkTheme={darkTheme}>
-                          <PageIcon darkTheme={darkTheme}>
-                            <SiYoutubegaming className="page-icon" />
-                          </PageIcon>
-                          <Heading darkTheme={darkTheme}>Gaming</Heading>
-                        </PageHeading>
-                        {this.renderApiStatus(darkTheme)}
-                      </>
-                    </SavedVideosContainer>
-                  </div>
-                )
-              }}
-            </NxtWatchContext.Consumer>
-          </div>
-        </div>
+            return (
+              <div>
+                <SavedVideosContainer darkTheme={darkTheme}>
+                  <>
+                    <PageHeading darkTheme={darkTheme}>
+                      <PageIcon darkTheme={darkTheme}>
+                        <SiYoutubegaming className="page-icon" />
+                      </PageIcon>
+                      <Heading darkTheme={darkTheme}>Gaming</Heading>
+                    </PageHeading>
+                    {this.renderApiStatus(darkTheme)}
+                  </>
+                </SavedVideosContainer>
+              </div>
+            )
+          }}
+        </NxtWatchContext.Consumer>
+        {/* </div>
+        </div> */}
       </>
     )
   }

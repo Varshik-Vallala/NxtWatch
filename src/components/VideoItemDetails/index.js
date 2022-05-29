@@ -4,19 +4,17 @@ import {AiOutlineDislike, AiOutlineLike} from 'react-icons/ai'
 
 import {BiListCheck, BiListPlus} from 'react-icons/bi'
 
-// import {formatDistanceToNow} from 'date-fns'
-
 import Loader from 'react-loader-spinner'
 
 import ReactPlayer from 'react-player'
 
 import Cookies from 'js-cookie'
 
-import Header from '../Header'
+// import Header from '../Header'
 
 import './index.css'
 
-import Routes from '../Routes'
+// import Routes from '../Routes'
 
 import {
   LoaderContainer,
@@ -55,7 +53,6 @@ class VideoItemDetails extends Component {
     like: false,
     disLike: false,
     videoAdded: false,
-    // checkVideo: false,
   }
 
   componentDidMount() {
@@ -120,7 +117,6 @@ class VideoItemDetails extends Component {
         channelProfileImage: data.video_details.channel.profile_image_url,
         channelSubscriberCount: data.video_details.channel.subscriber_count,
       }
-      //   console.log(data)
 
       this.setState({
         videoData: updatedVideoData,
@@ -129,8 +125,6 @@ class VideoItemDetails extends Component {
     } else {
       this.setState({apiStatus: initialApiStatus.failure})
     }
-
-    // console.log(data)
   }
 
   renderLoadingView = darkTheme => (
@@ -154,81 +148,27 @@ class VideoItemDetails extends Component {
       description,
     } = videoData
 
-    console.log(videoData)
-
-    // console.log(id)
-
-    // const checkVideo = savedVideosList.filter(id === savedVideosList.id) */
-
-    //  const checkVideo = savedVideosList.map(
-    //         eachVideo => eachVideo.id === id,
-    //       )
-
-    //   <BiListCheck className="active" />
-
-    //    <p className="active">Saved</p>
-
-    // console.log(publishedAt.split(','))
-
-    // const modifyDate = () => {
-    //   const months = [
-    //     'Jan',
-    //     'Feb',
-    //     'Mar',
-    //     'Apr',
-    //     'May',
-    //     'Jun',
-    //     'Jul',
-    //     'Aug',
-    //     'Sep',
-    //     'Oct',
-    //     'Nov',
-    //     'Dec',
-    //   ]
-
-    //   const [month, year] = publishedAt.split(',')
-    //   const m = month.slice(0, 3)
-    //   const date = month.slice(-2)
-
-    //   const monthNumber = months.indexOf(m)
-
-    //   return formatDistanceToNow(
-    //     new Date(parseInt(year), parseInt(monthNumber), parseInt(date)),
-    //   )
-    // }
-
     return (
       <NxtWatchContext.Consumer>
         {value => {
           const {darkTheme, onClickSaveVideo, savedVideosList} = value
 
-          const onSaveVideo = () => {
+          const onSaveVideo = async () => {
             onClickSaveVideo(videoData, id)
-            this.setState({videoAdded: !videoAdded})
+            const checkVideoList = savedVideosList.some(
+              eachVideo => eachVideo.id === id,
+            )
 
-            /* console.log(checkVideoList) */
+            if (checkVideoList) {
+              await this.setState({videoAdded: false})
+            } else {
+              await this.setState({videoAdded: true})
+            }
           }
 
           const checkVideoList = savedVideosList.some(
             eachVideo => eachVideo.id === id,
           )
-
-          /*  const checkVideoList = savedVideosList.some(
-            eachVideo => eachVideo.id === id,
-          ) */
-
-          /* const removeSavedVideo = () => {
-            console.log('removed clicked')
-
-            onClickSaveVideo(videoData, id) 
-
-            this.setState({
-              checkVideo: savedVideosList.some(
-                eachVideo => eachVideo.id === id,
-              ),
-            })
-          }
-          */
 
           return (
             <VideoContainer darkTheme={darkTheme}>
@@ -259,17 +199,7 @@ class VideoItemDetails extends Component {
                     <AiOutlineDislike className={disLike ? 'active' : null} />
                     <p className={disLike ? 'active' : null}>Dislike</p>
                   </RowFlex>
-                  {/* {checkVideo ? (
-                    <RowFlex onClick={removeSavedVideo}>
-                      <BiListCheck className="active" />
-                      <p className="active">Saved</p>
-                    </RowFlex>
-                  ) : ( */}
-                  <RowFlex
-                    // checkVideo={checkVideo}
-                    darkTheme={darkTheme}
-                    onClick={onSaveVideo}
-                  >
+                  <RowFlex saveText darkTheme={darkTheme} onClick={onSaveVideo}>
                     {videoAdded || checkVideoList ? (
                       <BiListCheck className="active" />
                     ) : (
@@ -281,13 +211,6 @@ class VideoItemDetails extends Component {
                       <p>Save</p>
                     )}
                   </RowFlex>
-
-                  {/* {checkVideo ? (
-                    <RowFlex darkTheme={darkTheme} onClick={onSaveVideo}>
-                      <BiListCheck className="active" />
-                      <p className="active">Saved</p>
-                    </RowFlex>
-                  ) : null} */}
                 </OptionsContainer>
               </VideoDetailsContainer>
               <hr />
@@ -344,27 +267,21 @@ class VideoItemDetails extends Component {
   }
 
   render() {
-    // console.log(videoData)
-
-    // const {name, profileImageUrl, subscriberCount} = channel
-
-    // console.log(formatDistanceToNow(new Date(publishedAt)))
-
     return (
       <>
-        <Header />
+        {/* <Header />
         <div className="home-container">
           <Routes />
-          <div className="home-page">
-            <NxtWatchContext.Consumer>
-              {value => {
-                const {darkTheme} = value
+          <div className="home-page"> */}
+        <NxtWatchContext.Consumer>
+          {value => {
+            const {darkTheme} = value
 
-                return this.renderApiStatus(darkTheme)
-              }}
-            </NxtWatchContext.Consumer>
-          </div>
-        </div>
+            return this.renderApiStatus(darkTheme)
+          }}
+        </NxtWatchContext.Consumer>
+        {/* </div>
+        </div> */}
       </>
     )
   }

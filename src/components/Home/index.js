@@ -9,9 +9,9 @@ import {AiOutlineClose, AiOutlineSearch} from 'react-icons/ai'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
 
-import Header from '../Header'
+// import Header from '../Header'
 
-import Routes from '../Routes'
+// import Routes from '../Routes'
 
 import VideoItem from '../VideoItem'
 
@@ -54,6 +54,16 @@ class Home extends Component {
 
   onClickSearch = () => {
     this.getHomeVideos()
+  }
+
+  onClickRetry = () => {
+    this.getHomeVideos()
+  }
+
+  onClickEnter = event => {
+    if (event.key === 'Enter') {
+      this.getHomeVideos()
+    }
   }
 
   getHomeVideos = async () => {
@@ -149,7 +159,9 @@ class Home extends Component {
         We are having some trouble to complete your request.
       </EmptyListText>
       <EmptyListText>Please try again.</EmptyListText>
-      <RetryButton type="button">Retry</RetryButton>
+      <RetryButton onClick={this.onClickRetry} type="button">
+        Retry
+      </RetryButton>
     </LoaderContainer>
   )
 
@@ -182,63 +194,65 @@ class Home extends Component {
 
     return (
       <>
-        <Header />
+        {/* <Header />
         <div className="home-container">
           <Routes />
-          <div className="home-page">
-            {showPremiumPopUp ? (
-              <div className="premium-plan-container">
-                <div>
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                    alt="light-logo-home"
-                    className="nxtwatch-logo"
-                  />
-                  {/* the above image tag was used form header component  */}
-                  <p>Buy Nxt Watch Premium plans prepaid plans with UPI</p>
-                  <button className="get-now-button" type="button">
-                    GET IT NOW
-                  </button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    className="cross-button"
-                    onClick={this.onClickCrossButton}
-                  >
-                    <AiOutlineClose />
-                  </button>
-                </div>
-              </div>
-            ) : null}
-            <NxtWatchContext.Consumer>
-              {value => {
-                const {darkTheme} = value
-
-                return (
-                  <HomePageVideosContainer darkTheme={darkTheme}>
-                    <div className="search-container">
-                      <SearchBox
-                        type="search"
-                        placeholder="Search"
-                        darkTheme={darkTheme}
-                        onChange={this.onChangeSearch}
-                        value={searchInput}
-                      />
-                      <SearchButton type="button" darkTheme={darkTheme}>
-                        <AiOutlineSearch
-                          className="search-icon"
-                          onClick={this.onClickSearch}
-                        />
-                      </SearchButton>
-                    </div>
-                    {this.renderApiStatusView(darkTheme)}
-                  </HomePageVideosContainer>
-                )
-              }}
-            </NxtWatchContext.Consumer>
+          <div className="home-page"> */}
+        {showPremiumPopUp ? (
+          <div className="premium-plan-container">
+            <div>
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                alt="light-logo-home"
+                className="nxtwatch-logo"
+              />
+              {/* the above image tag was used form header component  */}
+              <p>Buy Nxt Watch Premium plans prepaid plans with UPI</p>
+              <button className="get-now-button" type="button">
+                GET IT NOW
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                className="cross-button"
+                onClick={this.onClickCrossButton}
+              >
+                <AiOutlineClose />
+              </button>
+            </div>
           </div>
-        </div>
+        ) : null}
+        <NxtWatchContext.Consumer>
+          {value => {
+            const {darkTheme} = value
+
+            return (
+              <HomePageVideosContainer darkTheme={darkTheme}>
+                <div className="search-container">
+                  <SearchBox
+                    type="search"
+                    placeholder="Search"
+                    darkTheme={darkTheme}
+                    onChange={this.onChangeSearch}
+                    onKeyDown={this.onClickEnter}
+                    value={searchInput}
+                  />
+                  <SearchButton
+                    type="button"
+                    darkTheme={darkTheme}
+                    onClick={this.onClickSearch}
+                  >
+                    <AiOutlineSearch className="search-icon" />
+                  </SearchButton>
+                </div>
+                {this.renderApiStatusView(darkTheme)}
+              </HomePageVideosContainer>
+            )
+          }}
+        </NxtWatchContext.Consumer>
+        {/* </div>
+        </div> */}
       </>
     )
   }

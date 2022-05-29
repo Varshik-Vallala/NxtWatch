@@ -9,7 +9,16 @@ export const LinkItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 12px;
-  color: ${props => (props.darkTheme ? '#f4f4f4' : null)};
+    transition: background-color 0.5s;
+    transform-origin: center center;
+    :hover {
+      background-color: 'red'
+      color: black;
+      .nav-icons {
+        color: red;
+      }
+    }
+  //   color: ${props => (props.darkTheme ? '#f4f4f4' : null)};
 `
 
 export const LinkItem = styled.li`
@@ -21,8 +30,8 @@ export const LinkItem = styled.li`
 // (props.active ? '#d7dfe9' : null)
 
 // '#909090'
-export const Icon = styled.p`
-  padding: 0;
-  margin: 0;
-  color: ${props => (props.active ? 'yellow' : null)};
-`
+// export const Icon = styled.p`
+//   padding: 0;
+//   margin: 0;
+//   color: ${props => (props.active ? 'yellow' : null)};
+// `

@@ -53,7 +53,7 @@ const RouteItem = props => {
               active={active}
               darkTheme={darkTheme}
             >
-              <LinkItemContainer darkTheme={darkTheme}>
+              <LinkItemContainer>
                 {/* {showIcon()} we should not use {icon} <- like this use like this -> icon for */}
                 {/* {darkTheme && active ? activeIcon : darkThemeIcon}
                 {active ? activeIcon : icon} */}

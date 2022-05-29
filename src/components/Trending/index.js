@@ -8,9 +8,9 @@ import Loader from 'react-loader-spinner'
 
 import Cookies from 'js-cookie'
 
-import Header from '../Header'
+// import Header from '../Header'
 
-import Routes from '../Routes'
+// import Routes from '../Routes'
 
 import {
   PageHeading,
@@ -168,33 +168,33 @@ class Trending extends Component {
 
     return (
       <>
-        <Header />
+        {/* <Header />
         <div className="home-container">
           <Routes />
-          <div className="home-page">
-            <NxtWatchContext.Consumer>
-              {value => {
-                const {darkTheme} = value
+          <div className="home-page"> */}
+        <NxtWatchContext.Consumer>
+          {value => {
+            const {darkTheme} = value
 
-                return (
-                  <div>
-                    <SavedVideosContainer darkTheme={darkTheme}>
-                      <>
-                        <PageHeading darkTheme={darkTheme}>
-                          <PageIcon darkTheme={darkTheme}>
-                            <AiFillFire className="page-icon" />
-                          </PageIcon>
-                          <Heading darkTheme={darkTheme}>Trending</Heading>
-                        </PageHeading>
-                        {this.renderApiStatus(darkTheme)}
-                      </>
-                    </SavedVideosContainer>
-                  </div>
-                )
-              }}
-            </NxtWatchContext.Consumer>
-          </div>
-        </div>
+            return (
+              <div>
+                <SavedVideosContainer darkTheme={darkTheme}>
+                  <>
+                    <PageHeading darkTheme={darkTheme}>
+                      <PageIcon darkTheme={darkTheme}>
+                        <AiFillFire className="page-icon" />
+                      </PageIcon>
+                      <Heading darkTheme={darkTheme}>Trending</Heading>
+                    </PageHeading>
+                    {this.renderApiStatus(darkTheme)}
+                  </>
+                </SavedVideosContainer>
+              </div>
+            )
+          }}
+        </NxtWatchContext.Consumer>
+        {/* </div>
+        </div> */}
       </>
     )
   }

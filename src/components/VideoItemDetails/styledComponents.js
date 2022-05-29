@@ -20,9 +20,9 @@ export const RowFlex = styled.div`
   align-items: center;
   margin: 0px 8px 0px 8px;
   cursor: pointer;
-
+  min-width: ${props => (props.saveText ? '60px' : '')};
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
-  color: ${props => (props.active ? '#4f46e5' : null)};
+  //   color: ${props => (props.active ? '#4f46e5' : null)};
   //   color: ${props => (props.checkVideo ? '#4f46e5' : null)};
 `
 export const Title = styled.h4`
