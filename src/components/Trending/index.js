@@ -89,7 +89,7 @@ class Trending extends Component {
   }
 
   renderLoadingView = darkTheme => (
-    <LoaderContainer darkTheme={darkTheme}>
+    <LoaderContainer darkTheme={darkTheme} data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
@@ -123,7 +123,10 @@ class Trending extends Component {
             to={`/videos/${eachVideo.id}`}
           >
             <SavedVideo>
-              <SavedVideoThumbNail src={eachVideo.thumbnailUrl} />
+              <SavedVideoThumbNail
+                src={eachVideo.thumbnailUrl}
+                alt={eachVideo.thumbnailUrl}
+              />
               <div>
                 <SavedVideoHeading darkTheme={darkTheme}>
                   {eachVideo.title}

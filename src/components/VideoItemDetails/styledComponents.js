@@ -20,12 +20,14 @@ export const RowFlex = styled.div`
   align-items: center;
   margin: 0px 8px 0px 8px;
   cursor: pointer;
-  min-width: ${props => (props.saveText ? '60px' : '')};
-  color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
+  min-width: ${props => (props.saveText ? '70px' : '')};
+  color: ${props => (props.darkTheme ? '#f9f9f9' : '#64748b')};
   //   color: ${props => (props.active ? '#4f46e5' : null)};
   //   color: ${props => (props.checkVideo ? '#4f46e5' : null)};
 `
-export const Title = styled.h4`
+export const Title = styled.p`
+  font-size: 16px;
+  font-weight: 600;
   margin: 15px 0 8px 0;
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
   //   cursor: pointer;
@@ -56,4 +58,12 @@ export const ChannelName = styled.p`
 
 export const Description = styled.p`
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
+`
+
+export const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: ${props => (props.darkTheme ? '#f9f9f9' : '#64748b')};
+  color: ${props => (props.isActive ? '#2563eb' : '')};
 `

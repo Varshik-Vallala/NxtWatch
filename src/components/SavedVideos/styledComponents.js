@@ -57,8 +57,8 @@ export const SavedVideosListContainer = styled.ul`
 
 export const SavedVideo = styled.li`
   display: flex;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  //   margin-top: 5px;
+  //   margin-bottom: 5px;
   //   align-items: center;
 `
 
@@ -67,7 +67,9 @@ export const SavedVideoThumbNail = styled.img`
   width: 350px;
   margin-right: 20px;
 `
-export const SavedVideoHeading = styled.h3`
+export const SavedVideoHeading = styled.p`
+  font-size: 16px;
+  font-weight: 700;
   margin-top: 0;
   color: ${props => (props.darkTheme ? '#f1f1f1' : '#000')};
 `

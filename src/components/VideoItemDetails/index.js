@@ -35,6 +35,7 @@ import {
   ChannelName,
   OptionsContainer,
   Description,
+  Button,
 } from './styledComponents'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
@@ -128,7 +129,7 @@ class VideoItemDetails extends Component {
   }
 
   renderLoadingView = darkTheme => (
-    <LoaderContainer darkTheme={darkTheme}>
+    <LoaderContainer darkTheme={darkTheme} data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
@@ -193,11 +194,22 @@ class VideoItemDetails extends Component {
                 <OptionsContainer>
                   <RowFlex darkTheme={darkTheme} onClick={this.onClickLike}>
                     <AiOutlineLike className={like ? 'active' : null} />
-                    <p className={like ? 'active' : null}>Like</p>
+                    <Button
+                      isActive={like}
+                      type="button"
+                      className={like ? 'active' : null}
+                    >
+                      Like
+                    </Button>
                   </RowFlex>
                   <RowFlex darkTheme={darkTheme} onClick={this.onClickDisLike}>
                     <AiOutlineDislike className={disLike ? 'active' : null} />
-                    <p className={disLike ? 'active' : null}>Dislike</p>
+                    <Button
+                      isActive={disLike}
+                      className={disLike ? 'active' : null}
+                    >
+                      Dislike
+                    </Button>
                   </RowFlex>
                   <RowFlex saveText darkTheme={darkTheme} onClick={onSaveVideo}>
                     {videoAdded || checkVideoList ? (
@@ -206,9 +218,14 @@ class VideoItemDetails extends Component {
                       <BiListPlus />
                     )}
                     {videoAdded || checkVideoList ? (
-                      <p className="active">Saved</p>
+                      <Button
+                        isActive={videoAdded || checkVideoList}
+                        className="active"
+                      >
+                        Saved
+                      </Button>
                     ) : (
-                      <p>Save</p>
+                      <Button>Save</Button>
                     )}
                   </RowFlex>
                 </OptionsContainer>
@@ -216,7 +233,7 @@ class VideoItemDetails extends Component {
               <hr />
 
               <ChannelDetailsContainer>
-                <ChannelImage src={channelProfileImage} alt={channelName} />
+                <ChannelImage src={channelProfileImage} alt="channel logo" />
                 <div>
                   <ChannelName darkTheme={darkTheme}>{channelName}</ChannelName>
                   <ViewCount darkTheme={darkTheme}>

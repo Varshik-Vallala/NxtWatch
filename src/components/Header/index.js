@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 
 import './index.css'
 
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 
 import NxtWatchContext from '../../context/nxtWatchContext'
 
@@ -29,27 +29,32 @@ const Header = props => (
       return (
         <nav className={darkTheme ? 'navbar dark' : 'navbar'}>
           <div>
-            <img
-              src={
-                darkTheme
-                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-              }
-              alt="light-logo"
-              className="nxtwatch-logo"
-            />
+            <Link to="/">
+              <img
+                src={
+                  darkTheme
+                    ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                    : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                }
+                alt="website logo"
+                className="nxtwatch-logo"
+              />
+            </Link>
           </div>
           <div className="navbar-options-container">
-            <img
-              src={
-                darkTheme
-                  ? 'https://assets.ccbp.in/frontend/react-js/light-theme-img.png'
-                  : 'https://assets.ccbp.in/frontend/react-js/dark-theme-img.png'
-              }
-              alt="dark-logo"
-              className="dark-light-theme"
-              onClick={onClickDarkTheme}
-            />
+            <button className="theme-button" data-testid="theme" type="button">
+              <img
+                src={
+                  darkTheme
+                    ? 'https://assets.ccbp.in/frontend/react-js/light-theme-img.png'
+                    : 'https://assets.ccbp.in/frontend/react-js/dark-theme-img.png'
+                }
+                alt="dark-logo"
+                className="dark-light-theme"
+                onClick={onClickDarkTheme}
+              />
+            </button>
+
             <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png "
               alt="profile"

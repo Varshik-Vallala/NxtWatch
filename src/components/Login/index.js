@@ -4,7 +4,18 @@ import {Redirect} from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 
+import NxtWatchContext from '../../context/nxtWatchContext'
+
 import './index.css'
+
+import {
+  LabelText,
+  InputField,
+  InputContainer,
+  NxtWatchLogo,
+  LoginForm,
+  LoginFormContainer,
+} from './styledComponents'
 
 class Login extends Component {
   state = {
@@ -72,57 +83,68 @@ class Login extends Component {
     }
 
     return (
-      <div className="login-form-container">
-        <form className="login-form" onSubmit={this.submitForm}>
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="light-logo"
-            className="nxtwatch-logo"
-          />
-          <div className="input-container">
-            <label className="label-text" htmlFor="username">
-              USERNAME
-            </label>
-            <input
-              value={username}
-              id="username"
-              type="text"
-              placeholder="Username"
-              onChange={this.onChangeUserName}
-              className="input-field"
-            />
-          </div>
-          <div className="input-container">
-            <label className="label-text" htmlFor="password">
-              PASSWORD
-            </label>
-            <input
-              value={password}
-              id="password"
-              type={showPassword ? 'text' : 'password'}
-              placeholder="Password"
-              onChange={this.onChangePassword}
-              className="input-field"
-            />
-          </div>
-          <div>
-            <input
-              onClick={this.onCheckShowPassword}
-              type="checkbox"
-              id="showPassword"
-            />
-            <label className="label-text" htmlFor="showPassword">
-              Show Password
-            </label>
-          </div>
-          <button className="login-button" type="submit">
-            Login
-          </button>
-          {showErrorMessage ? (
-            <p className="error-message">{errorMessage}</p>
-          ) : null}
-        </form>
-      </div>
+      <NxtWatchContext.Consumer>
+        {value => {
+          const {darkTheme} = value
+
+          return (
+            <LoginFormContainer darkTheme={darkTheme}>
+              <LoginForm darkTheme={darkTheme} onSubmit={this.submitForm}>
+                <NxtWatchLogo
+                  src={
+                    darkTheme
+                      ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                      : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+                  }
+                  alt="website logo"
+                />
+                <InputContainer className="input-container">
+                  <LabelText className="label-text" htmlFor="username">
+                    USERNAME
+                  </LabelText>
+                  <InputField
+                    value={username}
+                    id="username"
+                    type="text"
+                    placeholder="Username"
+                    onChange={this.onChangeUserName}
+                    className="input-field"
+                  />
+                </InputContainer>
+                <InputContainer className="input-container">
+                  <LabelText className="label-text" htmlFor="password">
+                    PASSWORD
+                  </LabelText>
+                  <InputField
+                    value={password}
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Password"
+                    onChange={this.onChangePassword}
+                    className="input-field"
+                  />
+                </InputContainer>
+                <div>
+                  <input
+                    onClick={this.onCheckShowPassword}
+                    type="checkbox"
+                    id="showPassword"
+                  />
+                  <LabelText className="label-text" htmlFor="showPassword">
+                    Show Password
+                  </LabelText>
+                </div>
+                <button className="login-button" type="submit">
+                  Login
+                </button>
+                {showErrorMessage ? (
+                  <p className="error-message">{errorMessage}</p>
+                ) : null}
+              </LoginForm>
+            </LoginFormContainer>
+          )
+        }}
+      </NxtWatchContext.Consumer>
     )
   }
 }

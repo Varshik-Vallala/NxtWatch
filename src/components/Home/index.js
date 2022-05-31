@@ -127,7 +127,7 @@ class Home extends Component {
   }
 
   renderLoadingView = darkTheme => (
-    <LoaderContainer darkTheme={darkTheme}>
+    <LoaderContainer darkTheme={darkTheme} data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
@@ -207,7 +207,7 @@ class Home extends Component {
                 className="nxtwatch-logo"
               />
               {/* the above image tag was used form header component  */}
-              <p>Buy Nxt Watch Premium plans prepaid plans with UPI</p>
+              <p>Buy Nxt Watch Premium prepaid plans with UPI</p>
               <button className="get-now-button" type="button">
                 GET IT NOW
               </button>
@@ -217,6 +217,7 @@ class Home extends Component {
                 type="button"
                 className="cross-button"
                 onClick={this.onClickCrossButton}
+                data-testid="close"
               >
                 <AiOutlineClose />
               </button>

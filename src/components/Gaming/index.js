@@ -87,7 +87,7 @@ class Gaming extends Component {
   }
 
   renderLoadingView = darkTheme => (
-    <LoaderContainer darkTheme={darkTheme}>
+    <LoaderContainer darkTheme={darkTheme} data-testid="loader">
       <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
     </LoaderContainer>
   )
@@ -121,7 +121,10 @@ class Gaming extends Component {
             to={`/videos/${eachVideo.id}`}
           >
             <GameVideo>
-              <GamingThumbNailImage src={eachVideo.thumbnailUrl} />
+              <GamingThumbNailImage
+                src={eachVideo.thumbnailUrl}
+                alt={eachVideo.thumbnailUrl}
+              />
               <div>
                 <SavedVideoHeading darkTheme={darkTheme}>
                   {eachVideo.title}

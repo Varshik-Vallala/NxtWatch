@@ -115,7 +115,7 @@ class Routes extends Component {
             </li> */}
               </RoutesList>
               <div className="side-bar-footer">
-                <h4>CONTACT US</h4>
+                <p>CONTACT US</p>
                 <div>
                   <img
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
@@ -129,11 +129,11 @@ class Routes extends Component {
                   />
                   <img
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
-                    alt="linkedIn logo"
+                    alt="linked in logo"
                     className="social-media-logo"
                   />
                 </div>
-                <p>Enjoy! Now to see your channels nd recommendations!</p>
+                <p>Enjoy! Now to see your channels and recommendations!</p>
               </div>
             </div>
           )
