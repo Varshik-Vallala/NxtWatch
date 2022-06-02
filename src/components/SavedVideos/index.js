@@ -63,6 +63,7 @@ class SavedVideos extends Component {
                             <SavedVideo>
                               <SavedVideoThumbNail
                                 src={eachVideo.thumbnailUrl}
+                                alt="video thumbnail"
                               />
                               <div>
                                 <SavedVideoHeading darkTheme={darkTheme}>

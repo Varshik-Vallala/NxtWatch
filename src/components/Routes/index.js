@@ -41,7 +41,7 @@ const routes = [
   },
   {
     id: 'SAVEDVIDEOS',
-    displayText: 'SavedVideos',
+    displayText: 'Saved videos',
     link: '/saved-videos',
     icon: <BiListPlus className="link-icon" />,
     activeIcon: <BiListPlus className="link-icon active-link-icon" />,

@@ -73,12 +73,12 @@ const VideoItem = props => {
         return (
           <ListItem>
             <Link className="route-link" to={`/videos/${id}`}>
-              <ThumbnailImage src={thumbnailUrl} alt={id} />
+              <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
               <ThumbnailDetailsContainer>
                 <ThumbnailImage
                   channelImage
                   src={updatedChannelDetails.profileImageUrl}
-                  alt={updatedChannelDetails.name}
+                  alt="channel logo"
                 />
                 <VideoDetails>
                   <Title darkTheme={darkTheme}>{title}</Title>

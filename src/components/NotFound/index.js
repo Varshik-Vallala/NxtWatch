@@ -18,17 +18,17 @@ const NotFound = () => (
           {darkTheme ? (
             <NotFoundImage
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-dark-theme-img.png"
-              alt="not-found-dark"
+              alt="not found"
             />
           ) : (
             <NotFoundImage
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-not-found-light-theme-img.png"
-              alt="not-found-light"
+              alt="not found"
             />
           )}
           <Heading darkTheme={darkTheme}>Page Not Found</Heading>
           <Paragraph darkTheme={darkTheme}>
-            We are sorry, the page you requested cold not be found.
+            we are sorry, the page you requested could not be found.
           </Paragraph>
         </NotFoundContainer>
       )

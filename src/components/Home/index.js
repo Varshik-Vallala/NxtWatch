@@ -140,7 +140,7 @@ class Home extends Component {
       />
       <EmptyListHeading>No Search results found</EmptyListHeading>
       <EmptyListText>
-        Try different keys words or remove search filter
+        Try different key words or remove search filter
       </EmptyListText>
       <RetryButton type="button">Retry</RetryButton>
     </LoaderContainer>
@@ -150,10 +150,10 @@ class Home extends Component {
     <LoaderContainer darkTheme={darkTheme}>
       <NoVideosImage
         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-        alt=" failure-image"
+        alt="failure view"
       />
       <EmptyListHeading darkTheme={darkTheme}>
-        Opps! Something Went Wrong
+        Oops! Something Went Wrong
       </EmptyListHeading>
       <EmptyListText darkTheme={darkTheme}>
         We are having some trouble to complete your request.
@@ -199,11 +199,11 @@ class Home extends Component {
           <Routes />
           <div className="home-page"> */}
         {showPremiumPopUp ? (
-          <div className="premium-plan-container">
+          <div className="premium-plan-container" data-testid="banner">
             <div>
               <img
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                alt="light-logo-home"
+                alt="nxt watch logo"
                 className="nxtwatch-logo"
               />
               {/* the above image tag was used form header component  */}
@@ -243,6 +243,7 @@ class Home extends Component {
                     type="button"
                     darkTheme={darkTheme}
                     onClick={this.onClickSearch}
+                    data-testid="searchButton"
                   >
                     <AiOutlineSearch className="search-icon" />
                   </SearchButton>
