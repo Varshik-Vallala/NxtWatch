@@ -9,15 +9,18 @@ export const LinkItemContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 12px;
-  transition: background-color 0.5s;
+  min-width: 200px;
+  //   width: 50px;
+  transition: 0.5s;
 
-  //   :hover {
-  //     background-color: 'red'
-  //     color: black;
-  //     .nav-icons {
-  //       color: red;
-  //     }
-  //   }
+  :hover {
+    background-color: red;
+    // width: 300px;
+    // color: black;
+    // .nav-icons {
+    //   color: white;
+    // }
+  }
 
   //   color: ${props => (props.darkTheme ? '#f4f4f4' : null)};
 `
